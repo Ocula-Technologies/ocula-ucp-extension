@@ -1,0 +1,7 @@
+{
+  "name": "tech.ocula.shopping.descriptors",
+  "version": "2026-05-18",
+  "extends": ["dev.ucp.shopping.catalog.search", "dev.ucp.shopping.catalog.lookup"],
+  "spec": "https://ocula.tech/ucp-extension/descriptors/",
+  "schema": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/descriptors.json"
+}

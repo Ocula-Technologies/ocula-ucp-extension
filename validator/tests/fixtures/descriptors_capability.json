@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/test/descriptors.json",
+  "name": "tech.ocula.shopping.descriptors",
+  "version": "2026-05-18",
+  "title": "Descriptors (test seed)",
+  "description": "Composition test seed promoted from the v0.1 prototype. Carries the same shape as the published capability schema for the slice the validator exercises.",
+  "$defs": {
+    "descriptors_object": {
+      "type": "object",
+      "properties": {
+        "highlights": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "augmented_search_response": {
+      "allOf": [
+        {"$ref": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json#/$defs/search_response"},
+        {
+          "type": "object",
+          "properties": {
+            "products": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {"$ref": "https://ucp.dev/2026-04-08/schemas/shopping/types/product.json"},
+                  {
+                    "type": "object",
+                    "properties": {
+                      "descriptors": {"$ref": "#/$defs/descriptors_object"}
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
