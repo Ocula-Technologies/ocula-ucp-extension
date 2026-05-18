@@ -10,6 +10,22 @@
     "descriptors_object": {
       "$ref": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/descriptors_object.json"
     },
+    "product_with_descriptors": {
+      "title": "Product with Descriptors",
+      "description": "A UCP product decorated with a `descriptors` object.",
+      "allOf": [
+        {
+          "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/types/product.json"
+        },
+        {
+          "properties": {
+            "descriptors": {
+              "$ref": "#/$defs/descriptors_object"
+            }
+          }
+        }
+      ]
+    },
     "augmented_search_response": {
       "title": "Augmented Catalog Search Response",
       "description": "A `dev.ucp.shopping.catalog.search` response in which each product carries a `descriptors` object.",
@@ -21,18 +37,7 @@
           "properties": {
             "products": {
               "items": {
-                "allOf": [
-                  {
-                    "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/types/product.json"
-                  },
-                  {
-                    "properties": {
-                      "descriptors": {
-                        "$ref": "#/$defs/descriptors_object"
-                      }
-                    }
-                  }
-                ]
+                "$ref": "#/$defs/product_with_descriptors"
               }
             }
           }
@@ -50,18 +55,7 @@
           "properties": {
             "products": {
               "items": {
-                "allOf": [
-                  {
-                    "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/types/product.json"
-                  },
-                  {
-                    "properties": {
-                      "descriptors": {
-                        "$ref": "#/$defs/descriptors_object"
-                      }
-                    }
-                  }
-                ]
+                "$ref": "#/$defs/product_with_descriptors"
               }
             }
           }

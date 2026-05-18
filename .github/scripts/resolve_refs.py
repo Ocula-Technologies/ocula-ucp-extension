@@ -10,8 +10,8 @@ import sys
 import urllib.request
 from functools import lru_cache
 from pathlib import Path
+from typing import Iterator
 
-from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
 
@@ -39,23 +39,28 @@ def build_registry(local_schemas: list[dict]) -> Registry:
     return registry
 
 
+def iter_refs(node: object) -> Iterator[str]:
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key == "$ref" and isinstance(value, str):
+                yield value
+            else:
+                yield from iter_refs(value)
+    elif isinstance(node, list):
+        for item in node:
+            yield from iter_refs(item)
+
+
 def check_schema(schema: dict, schema_path: Path, registry: Registry) -> list[str]:
     sid = schema.get("$id", schema_path.absolute().as_uri())
-
-    # Validate `{}` against the root and against every `$defs` entry, so refs nested
-    # inside named definitions are exercised even when the empty instance wouldn't
-    # otherwise walk into them.
-    targets: list[tuple[str, dict]] = [("", schema)]
-    for def_name in (schema.get("$defs") or {}):
-        targets.append((f"#/$defs/{def_name}", {"$ref": f"{sid}#/$defs/{def_name}"}))
+    resolver = registry.resolver(base_uri=sid)
 
     failures: list[str] = []
-    for pointer, target in targets:
+    for ref in iter_refs(schema):
         try:
-            validator = Draft202012Validator(target, registry=registry)
-            list(validator.iter_errors({}))
+            resolver.lookup(ref)
         except Exception as exc:  # noqa: BLE001 -- broad catch is intentional for CI reporting
-            failures.append(f"{schema_path}{pointer}: {exc}")
+            failures.append(f"{schema_path} {ref}: {exc}")
     return failures
 
 
