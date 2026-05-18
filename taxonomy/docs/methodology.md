@@ -19,8 +19,7 @@ of the v0.1 taxonomy.
 
 The vocabulary itself is drafted from these observations and is subject to review against the
 underlying catalogues for coverage, naming consistency, and orthogonality between dimensions
-before publication. Per the OCU-3044 acceptance criteria, Greg owns vocabulary review against
-catalogue exposure; Ronan stress-tests for coverage, naming, and dimension orthogonality.
+before publication.
 
 No prior published taxonomy maps shopping intents along these dimensions in a way AI agents can
 use as a stable reference. Existing work in the space is either merchant-specific or buried
@@ -29,12 +28,11 @@ framework.
 
 ## Scope of this document
 
-The four dimensions and their values are drawn from Ocula's catalogue work and from the ACES
-strategy memo. The remaining sections of this document — rejected alternatives, known tensions,
-and deferred-to-v0.2 candidates — are the author's design-time reasoning at draft stage,
-intended to give reviewers something concrete to push back against. They are not a record of
-historical deliberation. Reviewers should amend or replace any item that does not reflect
-Ocula's actual position.
+The four dimensions and their values are drawn from Ocula's catalogue work. The remaining
+sections of this document — rejected alternatives, known tensions, and deferred-to-v0.2
+candidates — are design-time reasoning at draft stage, intended to give reviewers something
+concrete to push back against. They are not a record of historical deliberation. Reviewers
+should amend or replace any item that does not reflect Ocula's actual position.
 
 ## Why these four dimensions
 
