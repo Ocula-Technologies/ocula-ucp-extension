@@ -38,9 +38,10 @@ the UCP [Schema Authoring Guide](https://ucp.dev/documentation/schema-authoring/
 
 ## Hosting
 
-Canonical `$id` URLs for the schemas resolve under `https://ocula.tech/ucp-extension/...` once
-GitHub Pages + DNS are wired (tracked separately). Source of truth lives in this repository;
-serving via the `ocula.tech` authority domain follows UCP's origin-validation convention.
+Canonical `$id` URLs for the schemas resolve under `https://ucp-extension.ocula.tech/...` once
+GitHub Pages + DNS are wired (tracked separately). The hostname is a subdomain of `ocula.tech`,
+which preserves UCP's origin-validation expectation that schemas come from the namespace
+authority domain (`tech.ocula.*` ⇄ `ocula.tech`).
 
 ## License
 
