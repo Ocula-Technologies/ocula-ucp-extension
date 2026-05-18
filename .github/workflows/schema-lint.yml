@@ -38,3 +38,6 @@ jobs:
 
       - name: Resolve all $refs
         run: python .github/scripts/resolve_refs.py descriptors/schemas
+
+      - name: Validate taxonomy invariants
+        run: python .github/scripts/lint_taxonomy.py taxonomy/shopping_intents.json
