@@ -11,17 +11,30 @@ review, it should be revised or removed.
 
 ## Source material
 
-The taxonomy is grounded in patterns observed across Ocula's enrichment work, which spans
-catalogue exposure across multiple product categories — consumer retail, fashion, home goods,
-sporting equipment, and consumer electronics. Across these catalogues, shoppers' decision-shaping
-context falls into a small number of recurring axes: why they're buying, where they are in the
-funnel, what their relationship with the category is, and what situation the product will serve.
-These four axes are the dimensions of the v0.1 taxonomy.
+The taxonomy is grounded in catalogue exposure from Ocula's enrichment work across enterprise
+retailers. Across that work, shoppers' decision-shaping context falls into a small number of
+recurring axes: why they're buying, where they are in the funnel, what their relationship with
+the category is, and what situation the product will serve. These four axes are the dimensions
+of the v0.1 taxonomy.
 
-The vocabulary itself was drafted from these observations and then stress-tested against
-the catalogues for coverage, naming consistency, and orthogonality between dimensions. Values
-that didn't earn their place under that test were either folded into a sibling, generalised, or
-deferred.
+The vocabulary itself is drafted from these observations and is subject to review against the
+underlying catalogues for coverage, naming consistency, and orthogonality between dimensions
+before publication. Per the OCU-3044 acceptance criteria, Greg owns vocabulary review against
+catalogue exposure; Ronan stress-tests for coverage, naming, and dimension orthogonality.
+
+No prior published taxonomy maps shopping intents along these dimensions in a way AI agents can
+use as a stable reference. Existing work in the space is either merchant-specific or buried
+inside proprietary recommendation engines, so the taxonomy is not inherited from a third-party
+framework.
+
+## Scope of this document
+
+The four dimensions and their values are drawn from Ocula's catalogue work and from the ACES
+strategy memo. The remaining sections of this document — rejected alternatives, known tensions,
+and deferred-to-v0.2 candidates — are the author's design-time reasoning at draft stage,
+intended to give reviewers something concrete to push back against. They are not a record of
+historical deliberation. Reviewers should amend or replace any item that does not reflect
+Ocula's actual position.
 
 ## Why these four dimensions
 
