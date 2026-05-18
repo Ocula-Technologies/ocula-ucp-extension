@@ -5,11 +5,13 @@ on:
     branches: [main]
     paths:
       - 'validator/**'
+      - 'descriptors/**'
       - '.github/workflows/validator.yml'
   pull_request:
     branches: [main]
     paths:
       - 'validator/**'
+      - 'descriptors/**'
       - '.github/workflows/validator.yml'
 
 permissions:
@@ -41,3 +43,9 @@ jobs:
 
       - name: Test
         run: uv run pytest -v
+
+      - name: Smoke-validate published descriptors artifacts
+        run: |
+          uv run ocula-ucp-validate manifest ../descriptors/examples/manifest.json
+          uv run ocula-ucp-validate response ../descriptors/examples/search_response.json \
+              --capability ../descriptors/schemas/2026-05-18/descriptors.json
