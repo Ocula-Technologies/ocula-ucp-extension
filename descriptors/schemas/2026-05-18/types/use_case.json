@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/use_case.json",
+  "title": "Use Case",
+  "description": "A concrete situation the product is suited to. Use cases anchor product fit to a shopper's real context — the scenario, who it's for, and what outcome to expect.",
+  "type": "object",
+  "required": ["scenario"],
+  "properties": {
+    "scenario": {
+      "type": "string",
+      "description": "Short description of the situation the product fits (e.g., 'weekend trail running in mixed weather')."
+    },
+    "persona": {
+      "type": "string",
+      "description": "The kind of person the scenario applies to (e.g., 'beginner runner', 'parent with young children')."
+    },
+    "context": {
+      "type": "string",
+      "description": "Environmental or situational qualifiers — location, season, frequency, conditions."
+    },
+    "outcome": {
+      "type": "string",
+      "description": "What the product helps the persona achieve in the scenario."
+    }
+  }
+}

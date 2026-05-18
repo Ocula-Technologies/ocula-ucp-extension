@@ -25,19 +25,37 @@ def fetch_remote(uri: str) -> Resource:
         )
 
 
-def check_schema(schema_path: Path) -> list[str]:
-    schema = json.loads(schema_path.read_text())
+def build_registry(local_schemas: list[dict]) -> Registry:
+    # Pre-register every local schema by its `$id` so refs into our own apex URLs
+    # resolve from disk. Anything else falls through to `fetch_remote` (upstream UCP).
+    registry = Registry(retrieve=fetch_remote)
+    for schema in local_schemas:
+        sid = schema.get("$id")
+        if not sid:
+            continue
+        registry = registry.with_resource(
+            sid, Resource.from_contents(schema, default_specification=DRAFT202012)
+        )
+    return registry
+
+
+def check_schema(schema: dict, schema_path: Path, registry: Registry) -> list[str]:
     sid = schema.get("$id", schema_path.absolute().as_uri())
-    registry = Registry(retrieve=fetch_remote).with_resource(
-        sid, Resource.from_contents(schema, default_specification=DRAFT202012)
-    )
+
+    # Validate `{}` against the root and against every `$defs` entry, so refs nested
+    # inside named definitions are exercised even when the empty instance wouldn't
+    # otherwise walk into them.
+    targets: list[tuple[str, dict]] = [("", schema)]
+    for def_name in (schema.get("$defs") or {}):
+        targets.append((f"#/$defs/{def_name}", {"$ref": f"{sid}#/$defs/{def_name}"}))
 
     failures: list[str] = []
-    try:
-        validator = Draft202012Validator(schema, registry=registry)
-        list(validator.iter_errors({}))
-    except Exception as exc:  # noqa: BLE001 -- broad catch is intentional for CI reporting
-        failures.append(f"{schema_path}: {exc}")
+    for pointer, target in targets:
+        try:
+            validator = Draft202012Validator(target, registry=registry)
+            list(validator.iter_errors({}))
+        except Exception as exc:  # noqa: BLE001 -- broad catch is intentional for CI reporting
+            failures.append(f"{schema_path}{pointer}: {exc}")
     return failures
 
 
@@ -48,10 +66,13 @@ def main() -> int:
         print(f"No JSON files under {root}; nothing to resolve.")
         return 0
 
+    schemas = [(p, json.loads(p.read_text())) for p in schema_files]
+    registry = build_registry([s for _, s in schemas])
+
     all_failures: list[str] = []
-    for schema_path in schema_files:
+    for schema_path, schema in schemas:
         print(f"Schema: {schema_path}")
-        all_failures.extend(check_schema(schema_path))
+        all_failures.extend(check_schema(schema, schema_path, registry))
 
     if all_failures:
         print(f"\n{len(all_failures)} unresolved reference(s):", file=sys.stderr)

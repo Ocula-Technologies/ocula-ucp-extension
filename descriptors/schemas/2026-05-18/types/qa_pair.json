@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/qa_pair.json",
+  "title": "Q&A Pair",
+  "description": "A question a shopper might ask about a product, paired with the answer. Q&A pairs front-load common decision-driving questions so an agent can answer in-line without re-querying.",
+  "type": "object",
+  "required": ["question", "answer"],
+  "properties": {
+    "question": {
+      "type": "string",
+      "description": "The question, phrased as a shopper would naturally ask it."
+    },
+    "answer": {
+      "type": "string",
+      "description": "Direct, self-contained answer. SHOULD NOT require the shopper to consult other product fields to make sense."
+    },
+    "intent": {
+      "type": "string",
+      "description": "Open intent label drawn from the companion shopping-intent taxonomy (see `taxonomy/`). Names the decision context the question maps to.",
+      "examples": ["fit_and_sizing", "compatibility", "warranty_and_returns", "shipping_and_delivery", "materials_and_care"]
+    }
+  }
+}
