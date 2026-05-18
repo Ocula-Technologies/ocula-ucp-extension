@@ -1,0 +1,40 @@
+name: schema-lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install check-jsonschema jsonschema referencing
+
+      - name: Validate schemas against JSON Schema Draft 2020-12 metaschema
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          files=(descriptors/schemas/**/*.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No schema files yet — skipping metaschema check."
+            exit 0
+          fi
+          check-jsonschema --check-metaschema "${files[@]}"
+
+      - name: Resolve all $refs
+        run: python .github/scripts/resolve_refs.py descriptors/schemas
