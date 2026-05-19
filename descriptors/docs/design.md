@@ -84,20 +84,6 @@ enrichment use cases are model-level. Variant-level extension is additive
 (a new `descriptors` field nested in each variant); revisit for v0.2 if real
 client data shows the product-level surface is too coarse.
 
-### Quality scoring methodology
-
-Whether a highlight is well-written or a use case is coherent is a
-content-quality question. The validator in this repo checks structural
-conformance only. Content-quality assessment is offered as part of Ocula's
-commercial enrichment service — **not part of the open spec**.
-
-### Promotion to `dev.ucp.*`
-
-The `tech.ocula.*` namespace carries the extension while it lives outside the
-UCP working group. If adoption proves the design, the capability would
-graduate to `dev.ucp.shopping.descriptors` via the UCP RFC process. No schema
-shape changes anticipated — only the namespace and authority host shift.
-
 ## Why a descriptive layer at all
 
 *TODO — filled in by the launch-docs ticket.*
