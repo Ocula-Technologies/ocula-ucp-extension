@@ -12,13 +12,18 @@
     },
     "category": {
       "type": "string",
-      "description": "Open category label grouping highlights of similar kind. Well-known values: `performance`, `design`, `durability`, `value`, `sustainability`, `compatibility`. Implementations MAY use additional values.",
+      "description": "Open category label grouping highlights of similar kind. Open vocabulary; clients MUST tolerate unknown values. Well-known values: `performance`, `design`, `durability`, `value`, `sustainability`, `compatibility`.",
       "examples": ["performance", "design", "durability", "value", "sustainability", "compatibility"]
     },
     "evidence_ref": {
       "type": "string",
       "format": "uri",
       "description": "Optional URI pointing to evidence backing the claim — a product spec sheet, third-party review, certification record."
+    },
+    "source": {
+      "type": "string",
+      "description": "Categorical origin of the descriptive claim. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values. Well-known values: `manufacturer_spec`, `retailer_test`, `customer_reviews`, `expert_review`, `editorial`, `regulatory`, `ai_generated`.",
+      "examples": ["manufacturer_spec", "retailer_test", "customer_reviews", "expert_review", "editorial", "regulatory", "ai_generated"]
     }
   }
 }

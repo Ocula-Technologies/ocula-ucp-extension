@@ -4,7 +4,7 @@
   "title": "Use Case",
   "description": "A concrete situation the product is suited to. Use cases anchor product fit to a shopper's real context — the scenario, who it's for, and what outcome to expect.",
   "type": "object",
-  "required": ["scenario"],
+  "required": ["scenario", "persona", "context", "outcome"],
   "properties": {
     "scenario": {
       "type": "string",
@@ -21,6 +21,11 @@
     "outcome": {
       "type": "string",
       "description": "What the product helps the persona achieve in the scenario."
+    },
+    "source": {
+      "type": "string",
+      "description": "Categorical origin of the use-case claim. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values. Well-known values: `manufacturer_spec`, `retailer_test`, `customer_reviews`, `expert_review`, `editorial`, `regulatory`, `ai_generated`.",
+      "examples": ["manufacturer_spec", "retailer_test", "customer_reviews", "expert_review", "editorial", "regulatory", "ai_generated"]
     }
   }
 }
