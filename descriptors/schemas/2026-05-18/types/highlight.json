@@ -12,7 +12,7 @@
     },
     "category": {
       "type": "string",
-      "description": "Open category label grouping highlights of similar kind. Open vocabulary; clients MUST tolerate unknown values. Well-known values: `performance`, `design`, `durability`, `value`, `sustainability`, `compatibility`.",
+      "description": "Open category label grouping highlights of similar kind. Open vocabulary; clients MUST tolerate unknown values.",
       "examples": ["performance", "design", "durability", "value", "sustainability", "compatibility"]
     },
     "evidence_ref": {
@@ -22,7 +22,7 @@
     },
     "source": {
       "type": "string",
-      "description": "Categorical origin of the descriptive claim. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values. Well-known values: `manufacturer_spec`, `retailer_test`, `customer_reviews`, `expert_review`, `editorial`, `regulatory`, `ai_generated`.",
+      "description": "Categorical origin of the descriptive claim. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values.",
       "examples": ["manufacturer_spec", "retailer_test", "customer_reviews", "expert_review", "editorial", "regulatory", "ai_generated"]
     }
   }
