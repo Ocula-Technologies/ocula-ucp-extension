@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/taxonomy/shopping_intents.json",
+  "name": "tech.ocula.shopping.intents",
+  "version": "2026-05-18",
+  "title": "Ocula Shopping Intents",
+  "description": "An open, controlled vocabulary of shopping intents across four orthogonal dimensions: why the shopper is buying, where they sit in the decision funnel, what kind of user they are, and the situation the product is being chosen for. Designed to tag products with the contextual fit signals an agent needs to evaluate or describe them. Values are stable, snake_case, and never duplicated across dimensions, so a value alone is sufficient to identify its dimension.",
+  "encoding": "Wire values use the form `<dimension>:<value>` (e.g. `decision_phase:research`). Consumers MUST tolerate unknown values; growth is additive.",
+  "dimensions": {
+    "purchase_context": {
+      "description": "Why the shopper is buying — the motivating circumstance of the purchase, independent of the shopper's expertise or funnel position.",
+      "values": [
+        "gift",
+        "replacement",
+        "upgrade",
+        "first_purchase",
+        "repeat_purchase",
+        "bulk_order",
+        "urgent_need"
+      ]
+    },
+    "decision_phase": {
+      "description": "Where the shopper sits in the decision funnel — exploratory, evaluating alternatives, ready to commit, or already owning and seeking support.",
+      "values": [
+        "research",
+        "comparison",
+        "ready_to_buy",
+        "post_purchase_support"
+      ]
+    },
+    "user_type": {
+      "description": "The shopper's relationship to the product category — their expertise and engagement, not their demographic.",
+      "values": [
+        "beginner",
+        "enthusiast",
+        "professional",
+        "occasional_user"
+      ]
+    },
+    "situational_fit": {
+      "description": "The situation the product is being chosen for — where, when, or in what setting it will be used.",
+      "values": [
+        "travel",
+        "daily_use",
+        "special_occasion",
+        "seasonal",
+        "professional_setting",
+        "home_use"
+      ]
+    }
+  }
+}
