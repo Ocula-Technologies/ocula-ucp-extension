@@ -4,7 +4,7 @@
   "name": "tech.ocula.shopping.descriptors",
   "version": "2026-05-18",
   "title": "Shopping Descriptors",
-  "description": "Vendor extension to UCP's catalog capabilities that adds a structured descriptive layer to product responses: highlights, Q&A pairs, use cases, intent tags, and competitive differentiators. Composes against `dev.ucp.shopping.catalog.search` and `dev.ucp.shopping.catalog.lookup` by decorating each `product` in the response with a `descriptors` field.",
+  "description": "Adds structured descriptor data (highlights, Q&A, use cases, intent tags, differentiators) to products returned by catalog responses, so AI agents can assess contextual fit. Descriptors attach at the product level only in v0.1; variant-level descriptors are out of scope.",
   "type": "object",
   "$defs": {
     "descriptors_object": {

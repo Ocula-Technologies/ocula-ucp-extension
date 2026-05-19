@@ -12,8 +12,13 @@
     },
     "comparison_basis": {
       "type": "string",
-      "description": "What the claim is measured against. Open vocabulary. Well-known values: `category_average`, `named_competitor`, `previous_generation`, `industry_standard`. Implementations MAY use additional values.",
+      "description": "What the claim is measured against. Open vocabulary; clients MUST tolerate unknown values.",
       "examples": ["category_average", "named_competitor", "previous_generation", "industry_standard"]
+    },
+    "source": {
+      "type": "string",
+      "description": "Categorical origin of the differentiator claim. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values.",
+      "examples": ["manufacturer_spec", "retailer_test", "customer_reviews", "expert_review", "editorial", "regulatory", "ai_generated"]
     }
   }
 }

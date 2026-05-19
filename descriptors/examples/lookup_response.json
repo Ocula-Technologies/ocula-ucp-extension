@@ -69,7 +69,8 @@
           {
             "statement": "Carbon plate returns energy through the gait cycle for less fatigue on long runs.",
             "category": "performance",
-            "evidence_ref": "https://example.com/specs/trail-runner-pro"
+            "evidence_ref": "https://example.com/specs/trail-runner-pro",
+            "source": "manufacturer_spec"
           },
           {
             "statement": "Fully waterproof upper rated to IPX7, tested in mixed-weather conditions.",
@@ -77,19 +78,21 @@
           },
           {
             "statement": "Upper is made from 80% recycled polyester.",
-            "category": "sustainability"
+            "category": "sustainability",
+            "source": "expert_review"
           }
         ],
         "qa_pairs": [
           {
             "question": "Do these run true to size?",
             "answer": "Yes — the Trail Runner Pro fits true to size for most runners; consider sizing down half a size if you have a narrow forefoot.",
-            "intent": "fit_and_sizing"
+            "intent": "sizing",
+            "source": "customer_reviews"
           },
           {
             "question": "How long does shipping take?",
             "answer": "Standard shipping is 3-5 business days in the contiguous US; expedited options are available at checkout.",
-            "intent": "shipping_and_delivery"
+            "intent": "shipping"
           }
         ],
         "use_cases": [
@@ -97,7 +100,8 @@
             "scenario": "Weekend trail running in mixed weather",
             "persona": "Intermediate runner training for an ultramarathon",
             "context": "Rocky and muddy single-track, 20-40 km outings",
-            "outcome": "Stable footing on technical terrain with energy return that holds up through hour three."
+            "outcome": "Stable footing on technical terrain with energy return that holds up through hour three.",
+            "source": "editorial"
           },
           {
             "scenario": "Multi-day fastpacking",
@@ -107,15 +111,16 @@
           }
         ],
         "intent_tags": [
-          "long_distance_running",
-          "wet_weather_performance",
-          "technical_trail",
-          "sustainable_materials"
+          "decision_phase:research",
+          "user_type:enthusiast",
+          "situational_fit:seasonal",
+          "purchase_context:upgrade"
         ],
         "differentiators": [
           {
             "claim": "40% lighter than the previous generation while keeping the same drop and stack height.",
-            "comparison_basis": "previous_generation"
+            "comparison_basis": "previous_generation",
+            "source": "retailer_test"
           },
           {
             "claim": "Carbon plate placement gives 8% more energy return than the category average in lab tests.",

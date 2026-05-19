@@ -16,8 +16,13 @@
     },
     "intent": {
       "type": "string",
-      "description": "Open intent label drawn from the companion shopping-intent taxonomy (see `taxonomy/`). Names the decision context the question maps to.",
-      "examples": ["fit_and_sizing", "compatibility", "warranty_and_returns", "shipping_and_delivery", "materials_and_care"]
+      "description": "Open intent label naming the decision context the question maps to. Open vocabulary; clients MUST tolerate unknown values.",
+      "examples": ["compatibility", "sizing", "use_case", "comparison", "care", "warranty", "shipping"]
+    },
+    "source": {
+      "type": "string",
+      "description": "Categorical origin of the Q&A pair. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values.",
+      "examples": ["manufacturer_spec", "retailer_test", "customer_reviews", "expert_review", "editorial", "regulatory", "ai_generated"]
     }
   }
 }
