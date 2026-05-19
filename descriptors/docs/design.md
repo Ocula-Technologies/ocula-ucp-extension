@@ -70,6 +70,41 @@ values can evolve.
 `ai_generated`, etc.); `evidence_ref` on highlights remains a complementary
 URL to a specific backing document, not a substitute.
 
+## Future scope
+
+The items below are deliberately out of v0.1 scope. They are deferred to
+later versions or live in separate artefacts so the v0.1 surface stays small
+enough to ship and validate.
+
+### Variant-level descriptors
+
+UCP's product schema permits each variant to carry its own description. v0.1
+attaches descriptors only at the product level, on the assumption that most
+enrichment use cases are model-level. Variant-level extension is additive
+(a new `descriptors` field nested in each variant); revisit for v0.2 if real
+client data shows the product-level surface is too coarse.
+
+### Category-specific extensions
+
+Apparel-, electronics-, and beauty-specific structured fields (size charts,
+spec sheets, ingredient panels) belong in **separate capability namespaces**
+(e.g. `tech.ocula.shopping.descriptors.apparel`), not under this core
+capability. The core stays category-agnostic; categories layer on top.
+
+### Quality scoring methodology
+
+Whether a highlight is well-written or a use case is coherent is a
+content-quality question. The validator in this repo checks structural
+conformance only. Content-quality assessment is offered as part of Ocula's
+commercial enrichment service — **not part of the open spec**.
+
+### Promotion to `dev.ucp.*`
+
+The `tech.ocula.*` namespace carries the extension while it lives outside the
+UCP working group. If adoption proves the design, the capability would
+graduate to `dev.ucp.shopping.descriptors` via the UCP RFC process. No schema
+shape changes anticipated — only the namespace and authority host shift.
+
 ## Why a descriptive layer at all
 
 *TODO — filled in by the launch-docs ticket.*
