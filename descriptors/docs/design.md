@@ -84,13 +84,6 @@ enrichment use cases are model-level. Variant-level extension is additive
 (a new `descriptors` field nested in each variant); revisit for v0.2 if real
 client data shows the product-level surface is too coarse.
 
-### Category-specific extensions
-
-Apparel-, electronics-, and beauty-specific structured fields (size charts,
-spec sheets, ingredient panels) belong in **separate capability namespaces**
-(e.g. `tech.ocula.shopping.descriptors.apparel`), not under this core
-capability. The core stays category-agnostic; categories layer on top.
-
 ### Quality scoring methodology
 
 Whether a highlight is well-written or a use case is coherent is a
