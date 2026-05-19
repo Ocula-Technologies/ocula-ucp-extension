@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/descriptors.json",
+  "name": "tech.ocula.shopping.descriptors",
+  "version": "2026-05-18",
+  "title": "Shopping Descriptors",
+  "description": "Vendor extension to UCP's catalog capabilities that adds a structured descriptive layer to product responses: highlights, Q&A pairs, use cases, intent tags, and competitive differentiators. Composes against `dev.ucp.shopping.catalog.search` and `dev.ucp.shopping.catalog.lookup` by decorating each `product` in the response with a `descriptors` field.",
+  "type": "object",
+  "$defs": {
+    "descriptors_object": {
+      "$ref": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/descriptors_object.json"
+    },
+    "product_with_descriptors": {
+      "title": "Product with Descriptors",
+      "description": "A UCP product decorated with a `descriptors` object.",
+      "allOf": [
+        {
+          "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/types/product.json"
+        },
+        {
+          "properties": {
+            "descriptors": {
+              "$ref": "#/$defs/descriptors_object"
+            }
+          }
+        }
+      ]
+    },
+    "augmented_search_response": {
+      "title": "Augmented Catalog Search Response",
+      "description": "A `dev.ucp.shopping.catalog.search` response in which each product carries a `descriptors` object.",
+      "allOf": [
+        {
+          "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json#/$defs/search_response"
+        },
+        {
+          "properties": {
+            "products": {
+              "items": {
+                "$ref": "#/$defs/product_with_descriptors"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "augmented_lookup_response": {
+      "title": "Augmented Catalog Lookup Response",
+      "description": "A `dev.ucp.shopping.catalog.lookup` response in which each product carries a `descriptors` object.",
+      "allOf": [
+        {
+          "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_lookup.json#/$defs/lookup_response"
+        },
+        {
+          "properties": {
+            "products": {
+              "items": {
+                "$ref": "#/$defs/product_with_descriptors"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

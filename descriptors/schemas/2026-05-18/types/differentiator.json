@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/differentiator.json",
+  "title": "Differentiator",
+  "description": "A comparative claim positioning the product against an alternative. Differentiators are always relative — the `comparison_basis` names the reference being compared against.",
+  "type": "object",
+  "required": ["claim", "comparison_basis"],
+  "properties": {
+    "claim": {
+      "type": "string",
+      "description": "The comparative claim (e.g., '40% lighter than the previous model')."
+    },
+    "comparison_basis": {
+      "type": "string",
+      "description": "What the claim is measured against. Open vocabulary. Well-known values: `category_average`, `named_competitor`, `previous_generation`, `industry_standard`. Implementations MAY use additional values.",
+      "examples": ["category_average", "named_competitor", "previous_generation", "industry_standard"]
+    }
+  }
+}
