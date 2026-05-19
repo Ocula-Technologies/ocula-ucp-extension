@@ -1,9 +1,9 @@
 # Descriptors — design rationale
 
-> **DRAFT — partial document.** The full launch version is tracked under
-> `PLAN.md` Task 30 / a future ticket. This stub captures the field-shape
-> rationale that the schemas in `descriptors/schemas/2026-05-18/` are
-> predicated on. The remaining sections are placeholders.
+> **DRAFT — partial document.** The full launch version is tracked under a
+> future launch-docs ticket. This stub captures the field-shape rationale that
+> the schemas in `descriptors/schemas/2026-05-18/` are predicated on. The
+> remaining sections are placeholders.
 
 ## Per-field rationale
 
@@ -72,16 +72,16 @@ URL to a specific backing document, not a substitute.
 
 ## Why a descriptive layer at all
 
-*TODO — filled in by PLAN.md Task 30.*
+*TODO — filled in by the launch-docs ticket.*
 
 ## Why a vendor extension rather than a metadata blob
 
-*TODO — filled in by PLAN.md Task 30.*
+*TODO — filled in by the launch-docs ticket.*
 
 ## Composition mechanism
 
-*TODO — filled in by PLAN.md Task 30.*
+*TODO — filled in by the launch-docs ticket.*
 
 ## Why response-level composition rather than Product-type extension
 
-*TODO — filled in by PLAN.md Task 30.*
+*TODO — filled in by the launch-docs ticket.*
