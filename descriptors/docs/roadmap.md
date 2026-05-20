@@ -17,16 +17,6 @@ category's buying decision needs them:
 Each would ship as its own additive layer, composing the same way the base extension does — no
 breaking change to v0.1.
 
-### Quality scoring — Ocula's commercial layer (not part of the open spec)
-
-The open extension defines **structure**: whether a descriptor is present, well-formed, and uses
-documented vocabulary. It deliberately does **not** judge **content quality** — whether a highlight
-is well-written, a use case coherent, or a differentiator substantiated.
-
-Content-quality assessment is **Ocula's commercial enrichment offering**, not part of this open
-standard. That line stays clear and intentional: anyone can emit conformant descriptors for free;
-scoring and improving their quality is the commercial product.
-
 ### Promotion to `dev.ucp.*`
 
 `tech.ocula.shopping.descriptors` lives in Ocula's vendor namespace by design — a vendor extension
