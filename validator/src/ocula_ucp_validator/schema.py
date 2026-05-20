@@ -17,6 +17,10 @@ Retrieve = Callable[[str], Resource]
 APEX_SCHEMA_PREFIX = "https://ocula.tech/ucp-extension/"
 
 
+def _as_resource(contents: Any) -> Resource:
+    return Resource.from_contents(contents, default_specification=DRAFT202012)
+
+
 def load_capability_schema(path: Path | str) -> dict[str, Any]:
     """Load and parse the capability schema JSON file."""
     return json.loads(Path(path).read_text())
@@ -37,7 +41,7 @@ def build_registry(
         retrieve = http_retrieve
     if not isinstance(schema, dict):
         schema = load_capability_schema(schema)
-    root = Resource.from_contents(schema, default_specification=DRAFT202012)
+    root = _as_resource(schema)
     registry = Registry(retrieve=retrieve).with_resource(schema["$id"], root)
     for uri in _collect_remote_refs(schema):
         registry = registry.get_or_retrieve(uri).registry
@@ -72,7 +76,7 @@ def http_retrieve(uri: str) -> Resource:
         raise RuntimeError(f"could not retrieve {uri!r}: {exc}") from exc
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"could not parse JSON from {uri!r}: {exc}") from exc
-    return Resource.from_contents(payload, default_specification=DRAFT202012)
+    return _as_resource(payload)
 
 
 def local_first_retrieve(root: Path | str, fallback: Retrieve | None = None) -> Retrieve:
@@ -90,7 +94,6 @@ def local_first_retrieve(root: Path | str, fallback: Retrieve | None = None) -> 
         path = root / uri.removeprefix(APEX_SCHEMA_PREFIX)
         if not path.is_file():
             raise RuntimeError(f"could not retrieve {uri!r}: no local file at {path}")
-        contents = json.loads(path.read_text())
-        return Resource.from_contents(contents, default_specification=DRAFT202012)
+        return _as_resource(json.loads(path.read_text()))
 
     return retrieve
