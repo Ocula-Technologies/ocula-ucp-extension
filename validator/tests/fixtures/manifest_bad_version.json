@@ -1,7 +1,14 @@
 {
-  "name": "tech.ocula.shopping.descriptors",
-  "version": "v0.1",
-  "extends": ["dev.ucp.shopping.catalog.search"],
-  "spec": "https://ocula.tech/ucp-extension/descriptors/",
-  "schema": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/descriptors.json"
+  "ucp": {
+    "capabilities": {
+      "tech.ocula.shopping.descriptors": [
+        {
+          "version": "v0.1",
+          "spec": "https://ocula.tech/ucp-extension/descriptors/",
+          "schema": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/descriptors.json",
+          "extends": ["dev.ucp.shopping.catalog.search"]
+        }
+      ]
+    }
+  }
 }

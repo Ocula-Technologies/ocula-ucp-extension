@@ -5,11 +5,27 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from ocula_ucp_validator.validate import validate_manifest, validate_response
+from ocula_ucp_validator.validate import (
+    DESCRIPTORS_CAPABILITY,
+    validate_manifest,
+    validate_response,
+)
 
 
 def _load(path: Path) -> dict:
     return json.loads(path.read_text())
+
+
+def _manifest_with(**entry_overrides: object) -> dict:
+    """A valid `/.well-known/ucp` manifest with the descriptors entry field-patched."""
+    entry = {
+        "version": "2026-05-18",
+        "extends": ["dev.ucp.shopping.catalog.search"],
+        "spec": "https://ocula.tech/ucp-extension/descriptors/",
+        "schema": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/descriptors.json",
+    }
+    entry.update(entry_overrides)
+    return {"ucp": {"capabilities": {DESCRIPTORS_CAPABILITY: [entry]}}}
 
 
 def test_valid_response_passes(fixtures_dir: Path, capability_path: Path, offline) -> None:
@@ -40,35 +56,27 @@ def test_valid_manifest_passes(fixtures_dir: Path) -> None:
     assert result.errors == []
 
 
-def test_manifest_missing_name_fails(fixtures_dir: Path) -> None:
-    result = validate_manifest(_load(fixtures_dir / "manifest_missing_name.json"))
+def test_manifest_without_descriptors_capability_fails(fixtures_dir: Path) -> None:
+    result = validate_manifest(_load(fixtures_dir / "manifest_missing_capability.json"))
     assert result.is_valid is False
-    assert any(e.rule == "required" and "'name'" in e.message for e in result.errors)
+    assert any(e.rule == "required" and DESCRIPTORS_CAPABILITY in e.message for e in result.errors)
 
 
 def test_manifest_bad_version_fails(fixtures_dir: Path) -> None:
     result = validate_manifest(_load(fixtures_dir / "manifest_bad_version.json"))
     assert result.is_valid is False
-    assert any(e.path == ["version"] and e.rule == "pattern" for e in result.errors)
+    assert any(
+        e.path == ["ucp", "capabilities", DESCRIPTORS_CAPABILITY, 0, "version"]
+        and e.rule == "pattern"
+        for e in result.errors
+    )
 
 
 def test_manifest_rejects_empty_extends() -> None:
-    result = validate_manifest({
-        "name": "x",
-        "version": "2026-05-18",
-        "extends": [],
-        "spec": "https://x",
-        "schema": "https://x",
-    })
-    assert any(e.path == ["extends"] for e in result.errors)
+    result = validate_manifest(_manifest_with(extends=[]))
+    assert any(e.path[-1] == "extends" for e in result.errors)
 
 
 def test_manifest_rejects_relative_schema_url() -> None:
-    result = validate_manifest({
-        "name": "x",
-        "version": "2026-05-18",
-        "extends": ["a"],
-        "spec": "https://x",
-        "schema": "/relative",
-    })
-    assert any(e.path == ["schema"] and e.rule == "format" for e in result.errors)
+    result = validate_manifest(_manifest_with(schema="/relative"))
+    assert any(e.path[-1] == "schema" and e.rule == "format" for e in result.errors)
