@@ -1,0 +1,65 @@
+name: validator
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'validator/**'
+      - 'descriptors/**'
+      - '.github/workflows/validator.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'validator/**'
+      - 'descriptors/**'
+      - '.github/workflows/validator.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: validator
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync --extra dev
+
+      - name: Lint
+        run: uv run ruff check
+
+      - name: Test
+        run: uv run pytest -v
+
+      - name: Smoke-validate the repo's descriptors artifacts
+        run: |
+          set -euo pipefail
+          # Apex prefix the schemas are served under (mirrors APEX_SCHEMA_PREFIX in schema.py).
+          apex="https://ocula.tech/ucp-extension/"
+          uv run ocula-ucp-validate manifest ../descriptors/examples/manifest.json
+          # Validate every example against the schema VERSION it declares, resolved from this
+          # branch (--schema-root .. maps ocula.tech/ucp-extension/* refs to the working tree, not
+          # the deployed copy). Adding a new dated version + its example is then auto-covered.
+          for f in ../descriptors/examples/*_response.json; do
+            variant="augmented_$(basename "$f" .json)"
+            schema_url=$(jq -r '.ucp.capabilities["tech.ocula.shopping.descriptors"][0].schema' "$f")
+            schema_path="../${schema_url#"$apex"}"
+            echo "validating $(basename "$f") as $variant against ${schema_path#../}"
+            uv run ocula-ucp-validate response "$f" \
+                --capability "$schema_path" \
+                --variant "$variant" \
+                --schema-root ..
+          done

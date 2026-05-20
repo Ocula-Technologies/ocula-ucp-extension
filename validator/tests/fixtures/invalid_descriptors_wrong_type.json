@@ -1,0 +1,11 @@
+{
+  "ucp": {"capabilities": {}},
+  "products": [
+    {
+      "id": "p1",
+      "title": "Test product",
+      "description": {"text": "A test."},
+      "descriptors": {"highlights": "not an array"}
+    }
+  ]
+}

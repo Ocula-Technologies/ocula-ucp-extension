@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ucp.dev/2026-04-08/schemas/shopping/types/product.json",
+  "name": "dev.ucp.shopping.types.product",
+  "title": "UCP product (test stub)",
+  "type": "object",
+  "required": ["id", "title"],
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "description": {
+      "type": "object",
+      "properties": {"text": {"type": "string"}}
+    }
+  }
+}
