@@ -56,6 +56,30 @@ def test_response_unresolvable_ref_exits_usage_with_url(fixtures_dir: Path) -> N
     assert "missing.json" in result.output
 
 
+def test_response_schema_root_resolves_apex_refs_from_disk(tmp_path: Path) -> None:
+    """--schema-root resolves ocula.tech/ucp-extension/* refs from the tree, not the network."""
+    apex = "https://ocula.tech/ucp-extension/"
+    root = tmp_path / "tree"
+    (root / "descriptors").mkdir(parents=True)
+    (root / "descriptors" / "widget.json").write_text(json.dumps({
+        "$id": f"{apex}descriptors/widget.json",
+        "type": "object", "required": ["w"], "properties": {"w": {"type": "string"}},
+    }))
+    cap = tmp_path / "cap.json"
+    cap.write_text(json.dumps({
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": f"{apex}test/cap.json",
+        "name": "tech.ocula.shopping.descriptors",
+        "$defs": {"augmented_search_response": {"$ref": f"{apex}descriptors/widget.json"}},
+    }))
+    doc = tmp_path / "doc.json"
+    doc.write_text(json.dumps({"w": "ok"}))
+    result = runner.invoke(app, [
+        "response", str(doc), "--capability", str(cap), "--schema-root", str(root),
+    ])
+    assert result.exit_code == EXIT_OK, result.output
+
+
 def test_manifest_valid_exits_zero(fixtures_dir: Path) -> None:
     result = runner.invoke(app, ["manifest", str(fixtures_dir / "manifest_valid.json")])
     assert result.exit_code == EXIT_OK, result.stdout

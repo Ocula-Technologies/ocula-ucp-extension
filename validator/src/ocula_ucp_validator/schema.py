@@ -14,6 +14,8 @@ from referencing.jsonschema import DRAFT202012
 
 Retrieve = Callable[[str], Resource]
 
+APEX_SCHEMA_PREFIX = "https://ocula.tech/ucp-extension/"
+
 
 def load_capability_schema(path: Path | str) -> dict[str, Any]:
     """Load and parse the capability schema JSON file."""
@@ -71,3 +73,24 @@ def http_retrieve(uri: str) -> Resource:
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"could not parse JSON from {uri!r}: {exc}") from exc
     return Resource.from_contents(payload, default_specification=DRAFT202012)
+
+
+def local_first_retrieve(root: Path | str, fallback: Retrieve | None = None) -> Retrieve:
+    """Resolve `ocula.tech/ucp-extension/*` `$ref`s from `root` on disk; delegate the rest.
+
+    `root` is the directory the apex serves `/ucp-extension/*` from (the repo root), so CI can
+    validate the working tree's own schemas instead of the deployed copy. `fallback` (default
+    `http_retrieve`) handles non-apex URIs such as upstream `ucp.dev` schemas.
+    """
+    root = Path(root)
+
+    def retrieve(uri: str) -> Resource:
+        if not uri.startswith(APEX_SCHEMA_PREFIX):
+            return (fallback or http_retrieve)(uri)
+        path = root / uri.removeprefix(APEX_SCHEMA_PREFIX)
+        if not path.is_file():
+            raise RuntimeError(f"could not retrieve {uri!r}: no local file at {path}")
+        contents = json.loads(path.read_text())
+        return Resource.from_contents(contents, default_specification=DRAFT202012)
+
+    return retrieve

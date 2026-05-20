@@ -11,6 +11,7 @@ import typer
 from referencing.exceptions import Unretrievable
 
 from ocula_ucp_validator.report import ValidationResult, render_human
+from ocula_ucp_validator.schema import local_first_retrieve
 from ocula_ucp_validator.validate import DEFAULT_VARIANT, validate_manifest, validate_response
 
 EXIT_OK = 0
@@ -43,11 +44,21 @@ def response(
     json_out: Annotated[
         bool, typer.Option("--json", help="Emit machine-readable JSON instead of grouped text.")
     ] = False,
+    schema_root: Annotated[
+        Path | None,
+        typer.Option(
+            "--schema-root",
+            help="Resolve ocula.tech/ucp-extension/* $refs from this dir, not the network.",
+            exists=True,
+            file_okay=False,
+        ),
+    ] = None,
 ) -> None:
     """Validate a feed response against a capability schema variant."""
     payload = json.loads(file.read_text())
+    retrieve = local_first_retrieve(schema_root) if schema_root else None
     try:
-        result = validate_response(payload, capability, variant=variant)
+        result = validate_response(payload, capability, variant=variant, retrieve=retrieve)
     except Unretrievable as exc:
         detail = exc.__cause__ or f"could not retrieve {exc.ref!r}"
         typer.echo(f"error: {detail}", err=True)

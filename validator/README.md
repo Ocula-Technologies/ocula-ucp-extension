@@ -32,10 +32,18 @@ ocula-ucp-validate manifest path/to/manifest.json
 
 # Machine-readable output for CI
 ocula-ucp-validate response response.json --capability descriptors.json --json
+
+# Validate a working copy: resolve ocula.tech/ucp-extension/* refs from the repo, not the apex
+ocula-ucp-validate response response.json --capability descriptors.json --schema-root .
 ```
 
 `--variant` selects a `$defs` entry in the capability schema (defaults to
 `augmented_search_response`).
+
+By default the published schema's remote `$ref`s are fetched over the network (the live apex and
+`ucp.dev`). Pass `--schema-root <dir>` to resolve `ocula.tech/ucp-extension/*` refs from a local
+directory instead — useful in CI to validate a branch's own schemas before they're deployed.
+`ucp.dev` refs are still fetched.
 
 ## Exit codes
 
