@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/test/unresolvable.json",
+  "name": "tech.ocula.shopping.descriptors",
+  "version": "2026-05-18",
+  "title": "Descriptors (unresolvable-ref seed)",
+  "description": "Refs a ucp.dev schema with no offline fixture, so retrieval fails. Used to prove the CLI surfaces unreachable refs cleanly instead of crashing.",
+  "$defs": {
+    "augmented_search_response": {
+      "$ref": "https://ucp.dev/2026-04-08/schemas/shopping/missing.json"
+    }
+  }
+}

@@ -45,6 +45,17 @@ def test_response_missing_file_exits_usage(capability_path: Path) -> None:
     assert result.exit_code == EXIT_USAGE
 
 
+def test_response_unresolvable_ref_exits_usage_with_url(fixtures_dir: Path) -> None:
+    """An unreachable `$ref` exits cleanly (code 2) with the URL, not a traceback."""
+    result = runner.invoke(app, [
+        "response", str(fixtures_dir / "valid_search_response.json"),
+        "--capability", str(fixtures_dir / "descriptors_capability_unresolvable.json"),
+    ])
+    assert result.exit_code == EXIT_USAGE, result.output
+    assert result.exception is None or isinstance(result.exception, SystemExit), result.exception
+    assert "missing.json" in result.output
+
+
 def test_manifest_valid_exits_zero(fixtures_dir: Path) -> None:
     result = runner.invoke(app, ["manifest", str(fixtures_dir / "manifest_valid.json")])
     assert result.exit_code == EXIT_OK, result.stdout

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
+from referencing.exceptions import Unretrievable
 
 from ocula_ucp_validator.report import ValidationResult, render_human
 from ocula_ucp_validator.validate import DEFAULT_VARIANT, validate_manifest, validate_response
@@ -45,7 +46,12 @@ def response(
 ) -> None:
     """Validate a feed response against a capability schema variant."""
     payload = json.loads(file.read_text())
-    result = validate_response(payload, capability, variant=variant)
+    try:
+        result = validate_response(payload, capability, variant=variant)
+    except Unretrievable as exc:
+        detail = exc.__cause__ or f"could not retrieve {exc.ref!r}"
+        typer.echo(f"error: {detail}", err=True)
+        raise typer.Exit(code=EXIT_USAGE) from exc
     _emit(result, json_out)
 
 
