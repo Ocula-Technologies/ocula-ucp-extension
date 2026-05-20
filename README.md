@@ -38,9 +38,8 @@ the UCP [Schema Authoring Guide](https://ucp.dev/documentation/schema-authoring/
 
 ## Hosting
 
-Canonical `$id` URLs for the schemas resolve under `https://ocula.tech/ucp-extension/...` once
-apex routing is configured (tracked separately as infrastructure work outside this repo). The
-URLs sit on the apex `ocula.tech` host — the same domain the `tech.ocula.*` namespace claims
+Canonical `$id` URLs for the schemas resolve under `https://ocula.tech/ucp-extension/...`. They
+sit on the `ocula.tech` root domain — the same domain the `tech.ocula.*` namespace claims
 authority over — so they satisfy UCP's origin-validation rule under the strict reading of the
 spec.
 
