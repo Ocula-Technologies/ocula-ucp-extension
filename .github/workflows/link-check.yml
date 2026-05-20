@@ -20,7 +20,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # Scope to Markdown; the schema JSON carries canonical $id URLs that
-          # don't resolve until launch. PLAN.md is an internal working doc.
+          # don't resolve until launch.
           # Excludes:
           #   ocula.tech  — host not live until launch (remove this exclusion once it is)
           #   example.com — illustrative URLs in example payloads
@@ -28,7 +28,6 @@ jobs:
             --no-progress
             --exclude '^https?://ocula\.tech'
             --exclude '^https?://([a-z0-9-]+\.)*example\.com'
-            --exclude-path PLAN.md
             './**/*.md'
           fail: true
           token: ${{ secrets.GITHUB_TOKEN }}
