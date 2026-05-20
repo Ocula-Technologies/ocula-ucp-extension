@@ -1,11 +1,11 @@
 # ocula-ucp-extension
 
 Ocula's open vendor extensions to the [Universal Commerce Protocol (UCP)](https://ucp.dev).
-v0.1 scope: `tech.ocula.shopping.descriptors` — the descriptive layer for agentic commerce.
+Initial scope: `tech.ocula.shopping.descriptors` — the descriptive layer for agentic commerce.
 
-> **Status:** `v0.1-draft — pre-release.` RFC not yet submitted to the UCP working group.
+> **Status:** `draft — pre-release.` RFC not yet submitted to the UCP working group.
 > Schemas, taxonomy, and validator are under active development; shapes may change before the
-> v0.1 launch.
+> first public release.
 
 ## What this is
 
@@ -21,26 +21,26 @@ the UCP [Schema Authoring Guide](https://ucp.dev/documentation/schema-authoring/
 ## What this is not
 
 - **Not a competing standard.** It's a UCP-conformant vendor extension, designed for promotion
-  into the `dev.ucp.*` namespace if it gains adoption.
+  into the `dev.ucp.*` namespace if it gains adoption — following the precedent of
+  [Affirm's payment extension RFC (#384)](https://github.com/Universal-Commerce-Protocol/ucp/issues/384).
 - **Not a content-quality methodology.** The validator checks structural conformance only —
   whether fields are present, well-formed, and use documented vocabulary terms. Content quality
   assessment (whether a highlight is well-written, whether a use case is coherent) is a separate
   methodology, offered as part of Ocula's commercial enrichment services.
-- **Not finished.** This repository tracks the v0.1 draft as it lands.
+- **Not finished.** This repository tracks the draft as it lands.
 
 ## Repository layout
 
 | Path | Purpose |
 |------|---------|
-| [`descriptors/`](./descriptors/) | The capability schema and its component types, examples, and design documentation. |
-| [`taxonomy/`](./taxonomy/) | The companion shopping-intent taxonomy — machine-readable JSON + human-readable Markdown. |
-| [`validator/`](./validator/) | Python CLI for validating product responses and manifest entries against the schema. |
+| [`descriptors/`](https://github.com/Ocula-Technologies/ocula-ucp-extension/tree/main/descriptors) | The capability schema and its component types, examples, and design documentation. |
+| [`taxonomy/`](https://github.com/Ocula-Technologies/ocula-ucp-extension/tree/main/taxonomy) | The companion shopping-intent taxonomy — machine-readable JSON + human-readable Markdown. |
+| [`validator/`](https://github.com/Ocula-Technologies/ocula-ucp-extension/tree/main/validator) | Python CLI for validating product responses and manifest entries against the schema. |
 
 ## Hosting
 
-Canonical `$id` URLs for the schemas resolve under `https://ocula.tech/ucp-extension/...` once
-apex routing is configured (tracked separately as infrastructure work outside this repo). The
-URLs sit on the apex `ocula.tech` host — the same domain the `tech.ocula.*` namespace claims
+Canonical `$id` URLs for the schemas resolve under `https://ocula.tech/ucp-extension/...`. They
+sit on the `ocula.tech` root domain — the same domain the `tech.ocula.*` namespace claims
 authority over — so they satisfy UCP's origin-validation rule under the strict reading of the
 spec.
 
@@ -50,5 +50,5 @@ Apache 2.0 — see [`LICENSE`](./LICENSE).
 
 ## Contributing
 
-The repository is private during v0.1 development. Contribution guidelines will be published
-alongside the v0.1 launch.
+The repository is private during initial development. Contribution guidelines will be published
+alongside the first public release.

@@ -62,8 +62,8 @@ weight. `source` applies the same authoring discipline to non-comparative
 claims that `comparison_basis` already applies to differentiators.
 
 The field is **optional** (retailers without provenance tracking aren't
-blocked), **per-item** rather than a `descriptors`-block default (v0.1
-simplicity; defaults may be revisited in v0.2), and an **open vocabulary** so
+blocked), **per-item** rather than a `descriptors`-block default (draft-stage
+simplicity; defaults may be revisited later), and an **open vocabulary** so
 values can evolve.
 
 `source` is the *categorical type of origin* (`manufacturer_spec`,
@@ -72,17 +72,30 @@ URL to a specific backing document, not a substitute.
 
 ## Future scope
 
-The items below are deliberately out of v0.1 scope. They are deferred to
-later versions or live in separate artefacts so the v0.1 surface stays small
+The items below are deliberately out of the initial scope. They are deferred to
+later versions or live in separate artefacts so the initial surface stays small
 enough to ship and validate.
 
 ### Variant-level descriptors
 
-UCP's product schema permits each variant to carry its own description. v0.1
-attaches descriptors only at the product level, on the assumption that most
-enrichment use cases are model-level. Variant-level extension is additive
-(a new `descriptors` field nested in each variant); revisit for v0.2 if real
-client data shows the product-level surface is too coarse.
+UCP's product schema permits each variant to carry its own description. The
+initial schema attaches descriptors only at the product level, on the
+assumption that most enrichment use cases are model-level. Variant-level
+extension is additive (a new `descriptors` field nested in each variant);
+revisit in a future version if real client data shows the product-level
+surface is too coarse.
+
+### Category-specific extensions
+
+The initial descriptors are category-agnostic. Category packs would add
+structured fields where a category's buying decision needs them:
+
+- **Apparel** — fit, fabric, care, sizing systems.
+- **Electronics** — compatibility, specifications, port/standard support.
+- **Beauty** — ingredients, skin/hair-type fit, claims substantiation.
+
+Each would ship as its own additive layer, composing the same way the base
+extension does — no breaking change to existing consumers.
 
 ## Why a descriptive layer at all
 

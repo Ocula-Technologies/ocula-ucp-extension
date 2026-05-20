@@ -1,0 +1,33 @@
+name: link-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Check links in Markdown docs
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Scope to Markdown; the schema JSON carries canonical $id URLs that
+          # don't resolve until launch.
+          # Excludes:
+          #   ocula.tech  — host not live until launch (remove this exclusion once it is)
+          #   example.com — illustrative URLs in example payloads
+          args: >-
+            --no-progress
+            --exclude '^https?://ocula\.tech'
+            --exclude '^https?://([a-z0-9-]+\.)*example\.com'
+            './**/*.md'
+          fail: true
+          token: ${{ secrets.GITHUB_TOKEN }}

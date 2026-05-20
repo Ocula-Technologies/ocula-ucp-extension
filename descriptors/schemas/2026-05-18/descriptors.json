@@ -4,7 +4,7 @@
   "name": "tech.ocula.shopping.descriptors",
   "version": "2026-05-18",
   "title": "Shopping Descriptors",
-  "description": "Adds structured descriptor data (highlights, Q&A, use cases, intent tags, differentiators) to products returned by catalog responses, so AI agents can assess contextual fit. Descriptors attach at the product level only in v0.1; variant-level descriptors are out of scope.",
+  "description": "Adds structured descriptor data (highlights, Q&A, use cases, intent tags, differentiators) to products returned by catalog responses, so AI agents can assess contextual fit. Descriptors attach at the product level only in this version; variant-level descriptors are out of scope.",
   "type": "object",
   "$defs": {
     "descriptors_object": {

@@ -7,7 +7,7 @@ machine-readable and human-readable.
 |------|----------|
 | [`shopping_intents.json`](./shopping_intents.json) | Machines — ingestion, indexing, tag validation. |
 | [`shopping_intents.md`](./shopping_intents.md) | Humans — per-intent definitions, positive and negative examples, wire format. |
-| [`docs/methodology.md`](./docs/methodology.md) | Reviewers — why these dimensions, what was rejected, orthogonality argument, deferred-to-v0.2. |
+| [`docs/methodology.md`](./docs/methodology.md) | Reviewers — why these dimensions, what was rejected, orthogonality argument, deferred candidates. |
 
 ## What this is
 
@@ -52,7 +52,7 @@ a `dimensions` map. Each dimension has a `values` array of strings. The encoding
 examples (the boundary cases that distinguish it from neighbours), and its wire format.
 
 **Reviewers:** read `docs/methodology.md`. Defends the choice of four dimensions, lists what was
-rejected and why, makes the orthogonality argument, and lists what was deferred to v0.2.
+rejected and why, makes the orthogonality argument, and lists what was deferred to a future version.
 
 ## Versioning
 
