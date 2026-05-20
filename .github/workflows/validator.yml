@@ -47,14 +47,19 @@ jobs:
       - name: Smoke-validate the repo's descriptors artifacts
         run: |
           set -euo pipefail
+          # Apex prefix the schemas are served under (mirrors APEX_SCHEMA_PREFIX in schema.py).
+          apex="https://ocula.tech/ucp-extension/"
           uv run ocula-ucp-validate manifest ../descriptors/examples/manifest.json
-          # Validate every example response against this branch's schemas (--schema-root ..
-          # resolves ocula.tech/ucp-extension/* refs from the tree, not the deployed copy).
+          # Validate every example against the schema VERSION it declares, resolved from this
+          # branch (--schema-root .. maps ocula.tech/ucp-extension/* refs to the working tree, not
+          # the deployed copy). Adding a new dated version + its example is then auto-covered.
           for f in ../descriptors/examples/*_response.json; do
             variant="augmented_$(basename "$f" .json)"
-            echo "validating $(basename "$f") as $variant"
+            schema_url=$(jq -r '.ucp.capabilities["tech.ocula.shopping.descriptors"][0].schema' "$f")
+            schema_path="../${schema_url#"$apex"}"
+            echo "validating $(basename "$f") as $variant against ${schema_path#../}"
             uv run ocula-ucp-validate response "$f" \
-                --capability ../descriptors/schemas/2026-05-18/descriptors.json \
+                --capability "$schema_path" \
                 --variant "$variant" \
                 --schema-root ..
           done
