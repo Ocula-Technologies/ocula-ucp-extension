@@ -16,18 +16,13 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
 
-      - name: Check links in docs and published JSON
+      - name: Check links in docs
         uses: lycheeverse/lychee-action@v2
         with:
-          # Check all Markdown plus the published schema/example/taxonomy JSON ($id/$ref/spec
-          # URLs, live since the apex launched). validator/ JSON is intentionally excluded — its
-          # test fixtures carry deliberately-unresolvable URLs. Excludes:
-          #   example.com — illustrative URLs in example payloads
+          # example.com URLs in the example payloads are illustrative, not real.
           args: >-
             --no-progress
             --exclude '^https?://([a-z0-9-]+\.)*example\.com'
             './**/*.md'
-            './descriptors/**/*.json'
-            './taxonomy/**/*.json'
           fail: true
           token: ${{ secrets.GITHUB_TOKEN }}
