@@ -50,5 +50,6 @@ Apache 2.0 — see [`LICENSE`](./LICENSE).
 
 ## Contributing
 
-The repository is private during initial development. Contribution guidelines will be published
-alongside the first public release.
+Contributions are welcome — see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how to propose schema,
+taxonomy, and documentation changes and what the conformance checks expect. By participating you
+agree to our [Code of Conduct](./CODE_OF_CONDUCT.md).
