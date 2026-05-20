@@ -22,7 +22,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install check-jsonschema jsonschema referencing
+        run: pip install check-jsonschema referencing
 
       - name: Validate schemas against JSON Schema Draft 2020-12 metaschema
         shell: bash
@@ -38,3 +38,6 @@ jobs:
 
       - name: Resolve all $refs
         run: python .github/scripts/resolve_refs.py descriptors/schemas
+
+      - name: Validate taxonomy invariants
+        run: python .github/scripts/lint_taxonomy.py taxonomy/shopping_intents.json

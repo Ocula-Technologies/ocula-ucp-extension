@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/descriptors_object.json",
+  "title": "Descriptors",
+  "description": "The descriptive layer attached to a product: highlights, Q&A pairs, use cases, intent tags, and competitive differentiators. All fields are optional — a partially populated descriptors object is conformant. Descriptors attach at the product level only in this version; variant-level descriptors are out of scope.",
+  "type": "object",
+  "properties": {
+    "highlights": {
+      "type": "array",
+      "items": {
+        "$ref": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/highlight.json"
+      },
+      "description": "Standalone descriptive claims about the product."
+    },
+    "qa_pairs": {
+      "type": "array",
+      "items": {
+        "$ref": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/qa_pair.json"
+      },
+      "description": "Pre-answered questions a shopper might ask."
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "$ref": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/use_case.json"
+      },
+      "description": "Concrete situations the product is suited to."
+    },
+    "intent_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Shopping-intent tags drawn from the companion taxonomy at `taxonomy/shopping_intents.json` (version `2026-05-18`). Values SHOULD use the namespaced wire form `<dimension>:<value>` (e.g. `decision_phase:research`). Open vocabulary; clients MUST tolerate unknown values."
+    },
+    "differentiators": {
+      "type": "array",
+      "items": {
+        "$ref": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/differentiator.json"
+      },
+      "description": "Comparative claims positioning the product against alternatives."
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/types/highlight.json",
+  "title": "Highlight",
+  "description": "A single descriptive claim about a product, framed as an agent-readable statement. Highlights surface what makes a product distinctive — performance characteristics, design choices, durability, value, sustainability, compatibility.",
+  "type": "object",
+  "required": ["statement"],
+  "properties": {
+    "statement": {
+      "type": "string",
+      "description": "The highlight, written as a single declarative sentence (e.g., 'Waterproof to 30 meters'). MUST be self-contained — readers should not need product context to understand it."
+    },
+    "category": {
+      "type": "string",
+      "description": "Open category label grouping highlights of similar kind. Open vocabulary; clients MUST tolerate unknown values.",
+      "examples": ["performance", "design", "durability", "value", "sustainability", "compatibility"]
+    },
+    "evidence_ref": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional URI pointing to evidence backing the claim — a product spec sheet, third-party review, certification record."
+    },
+    "source": {
+      "type": "string",
+      "description": "Categorical origin of the descriptive claim. Agents may weight trust by source. Open vocabulary; clients MUST tolerate unknown values.",
+      "examples": ["manufacturer_spec", "retailer_test", "customer_reviews", "expert_review", "editorial", "regulatory", "ai_generated"]
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "ucp": {
+    "version": "2026-04-08",
+    "capabilities": {
+      "dev.ucp.shopping.catalog.search": [
+        {
+          "version": "2026-04-08",
+          "spec": "https://ucp.dev/2026-04-08/specification/catalog",
+          "schema": "https://ucp.dev/2026-04-08/schemas/shopping/catalog_search.json"
+        }
+      ],
+      "tech.ocula.shopping.descriptors": [
+        {
+          "version": "2026-05-18",
+          "spec": "https://ocula.tech/ucp-extension/descriptors/",
+          "schema": "https://ocula.tech/ucp-extension/descriptors/schemas/2026-05-18/descriptors.json",
+          "extends": [
+            "dev.ucp.shopping.catalog.search",
+            "dev.ucp.shopping.catalog.lookup"
+          ]
+        }
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": "gid://example/Product/trail-runner-pro",
+      "handle": "trail-runner-pro",
+      "title": "Trail Runner Pro",
+      "description": {
+        "plain": "All-terrain trail running shoe with carbon plate and waterproof upper."
+      },
+      "price_range": {
+        "min": { "amount": 14900, "currency": "USD" },
+        "max": { "amount": 17900, "currency": "USD" }
+      },
+      "variants": [
+        {
+          "id": "gid://example/Variant/trail-runner-pro-9-blue",
+          "title": "Size 9 / Blue",
+          "description": {
+            "plain": "Trail Runner Pro in size 9, blue colorway."
+          },
+          "price": { "amount": 14900, "currency": "USD" }
+        }
+      ],
+      "descriptors": {
+        "highlights": [
+          {
+            "statement": "Carbon plate returns energy through the gait cycle for less fatigue on long runs.",
+            "category": "performance",
+            "evidence_ref": "https://example.com/specs/trail-runner-pro",
+            "source": "manufacturer_spec"
+          },
+          {
+            "statement": "Fully waterproof upper rated to IPX7, tested in mixed-weather conditions.",
+            "category": "durability"
+          }
+        ],
+        "qa_pairs": [
+          {
+            "question": "Do these run true to size?",
+            "answer": "Yes — the Trail Runner Pro fits true to size for most runners; consider sizing down half a size if you have a narrow forefoot.",
+            "intent": "sizing",
+            "source": "customer_reviews"
+          },
+          {
+            "question": "How do I clean them after a muddy run?",
+            "answer": "Rinse with cool water, remove the insole, and air-dry away from direct heat. Avoid machine washing.",
+            "intent": "care"
+          }
+        ],
+        "use_cases": [
+          {
+            "scenario": "Weekend trail running in mixed weather",
+            "persona": "Intermediate runner training for an ultramarathon",
+            "context": "Rocky and muddy single-track, 20-40 km outings",
+            "outcome": "Stable footing on technical terrain with energy return that holds up through hour three.",
+            "source": "editorial"
+          },
+          {
+            "scenario": "Daily commute on wet city streets",
+            "persona": "Urban runner who commutes by foot",
+            "context": "Mixed pavement and gravel paths in autumn rain",
+            "outcome": "Dry feet for the full commute and grip on wet surfaces."
+          }
+        ],
+        "intent_tags": [
+          "decision_phase:research",
+          "user_type:enthusiast",
+          "situational_fit:seasonal"
+        ],
+        "differentiators": [
+          {
+            "claim": "40% lighter than the previous generation while keeping the same drop and stack height.",
+            "comparison_basis": "previous_generation",
+            "source": "retailer_test"
+          },
+          {
+            "claim": "Carbon plate placement gives 8% more energy return than the category average in lab tests.",
+            "comparison_basis": "category_average"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gid://example/Product/aero-road-shoe",
+      "handle": "aero-road-shoe",
+      "title": "Aero Road Shoe",
+      "description": {
+        "plain": "Lightweight road racing shoe optimized for marathon distance."
+      },
+      "price_range": {
+        "min": { "amount": 22900, "currency": "USD" },
+        "max": { "amount": 22900, "currency": "USD" }
+      },
+      "variants": [
+        {
+          "id": "gid://example/Variant/aero-road-shoe-10",
+          "title": "Size 10",
+          "description": {
+            "plain": "Aero Road Shoe in size 10."
+          },
+          "price": { "amount": 22900, "currency": "USD" }
+        }
+      ],
+      "descriptors": {
+        "highlights": [
+          {
+            "statement": "230 g half-pair weight — among the lightest in its road-racing class.",
+            "category": "performance",
+            "source": "expert_review"
+          },
+          {
+            "statement": "Single-density foam tuned for marathon-pace cadence.",
+            "category": "design"
+          }
+        ],
+        "qa_pairs": [
+          {
+            "question": "Is this shoe suitable for daily training?",
+            "answer": "Not recommended — the Aero Road Shoe is tuned for race days and tempo sessions. For daily mileage, consider a higher-stack training shoe.",
+            "intent": "compatibility"
+          },
+          {
+            "question": "What's the return policy?",
+            "answer": "30-day returns on unworn shoes; once they touch pavement the sale is final.",
+            "intent": "warranty",
+            "source": "regulatory"
+          }
+        ],
+        "use_cases": [
+          {
+            "scenario": "Marathon race day",
+            "persona": "Sub-3:30 marathoner",
+            "context": "Flat road course in cool weather",
+            "outcome": "Consistent cadence with minimal late-race foot fatigue.",
+            "source": "ai_generated"
+          },
+          {
+            "scenario": "Weekly tempo sessions on the track",
+            "persona": "Competitive amateur runner",
+            "context": "Hard surface, sub-marathon pace efforts",
+            "outcome": "Race-specific neuromuscular adaptation without burning out a daily trainer."
+          }
+        ],
+        "intent_tags": [
+          "decision_phase:ready_to_buy",
+          "user_type:enthusiast",
+          "situational_fit:special_occasion"
+        ],
+        "differentiators": [
+          {
+            "claim": "30 g lighter than the closest competitor in the marathon racing category.",
+            "comparison_basis": "named_competitor",
+            "source": "manufacturer_spec"
+          },
+          {
+            "claim": "Stack height meets the industry standard for World Athletics-legal road racing.",
+            "comparison_basis": "industry_standard"
+          }
+        ]
+      }
+    }
+  ]
+}
