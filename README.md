@@ -32,9 +32,9 @@ the UCP [Schema Authoring Guide](https://ucp.dev/documentation/schema-authoring/
 
 | Path | Purpose |
 |------|---------|
-| [`descriptors/`](./descriptors/) | The capability schema and its component types, examples, and design documentation. |
-| [`taxonomy/`](./taxonomy/) | The companion shopping-intent taxonomy — machine-readable JSON + human-readable Markdown. |
-| [`validator/`](./validator/) | Python CLI for validating product responses and manifest entries against the schema. |
+| [`descriptors/`](https://github.com/Ocula-Technologies/ocula-ucp-extension/tree/main/descriptors) | The capability schema and its component types, examples, and design documentation. |
+| [`taxonomy/`](https://github.com/Ocula-Technologies/ocula-ucp-extension/tree/main/taxonomy) | The companion shopping-intent taxonomy — machine-readable JSON + human-readable Markdown. |
+| [`validator/`](https://github.com/Ocula-Technologies/ocula-ucp-extension/tree/main/validator) | Python CLI for validating product responses and manifest entries against the schema. |
 
 ## Hosting
 
