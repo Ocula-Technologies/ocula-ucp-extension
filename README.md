@@ -56,7 +56,7 @@ left implicit.
 A worked product example lives in [`descriptors/README.md`](descriptors/README.md), with full
 composed responses under [`descriptors/examples/`](descriptors/examples/).
 
-## What v0.1 contains
+## What 2026-05-18 contains
 
 Three pieces, all open and freely usable:
 
@@ -66,13 +66,13 @@ Three pieces, all open and freely usable:
    `qa_pairs.intent` draw from, as machine-readable JSON plus human-readable Markdown, under
    [`taxonomy/`](taxonomy/). No published taxonomy currently maps shopping intents (purchase
    context, decision phase, user type, situational fit) in a form AI agents can use as a stable
-   reference; this is the substantive heart of v0.1.
+   reference; this is the substantive heart of 2026-05-18.
 3. **An open-source validator** — a Python CLI for checking that a product feed or manifest
    conforms to the spec, under [`validator/`](validator/).
 
 The validator checks **structural conformance** only: fields present, well-formed, and using
 documented vocabulary terms. Content quality (is a highlight well-written? is a use case
-coherent? are intent tags accurately applied?) is a separate problem and out of scope for v0.1.
+coherent? are intent tags accurately applied?) is a separate problem and out of scope for 2026-05-18.
 
 ## Design choices worth knowing
 
@@ -104,7 +104,7 @@ These are decisions the schema makes on purpose. Each is documented in
 
 ## Roadmap
 
-After v0.1, the directions worth signalling:
+After 2026-05-18, the directions worth signalling:
 
 - **Category-specific extensions.** Vertical extensions for apparel (fit signals, occasion,
   season), electronics (compatibility, performance specs, certifications), beauty (skin type,
