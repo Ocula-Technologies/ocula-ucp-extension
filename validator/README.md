@@ -6,7 +6,8 @@ Validates two things:
 
 - **Feed responses** — a `catalog.search` (or `catalog.lookup`) response, decorated with the
   `descriptors` block, against the capability schema.
-- **Manifest entries** — a `/.well-known/ucp` entry that advertises the extension.
+- **Manifests** — a `/.well-known/ucp` document, checking the `tech.ocula.shopping.descriptors`
+  capability it advertises.
 
 Structural conformance only. Content quality (is the highlight statement useful? is the QA pair
 specific enough?) is out of scope and is Ocula's commercial layer.
@@ -42,7 +43,7 @@ ocula-ucp-validate response response.json --capability descriptors.json --json
 |------|---------|
 | 0 | Document is valid. |
 | 1 | Validation found errors. |
-| 2 | Bad input — file not found, unreadable, or malformed JSON. |
+| 2 | Bad input — file not found, unreadable, malformed JSON, or an unresolvable schema `$ref`. |
 
 ## Library usage
 
