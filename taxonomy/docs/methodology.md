@@ -1,6 +1,6 @@
 # Taxonomy Construction Methodology
 
-This document defends the construction of `tech.ocula.shopping.intents` v0.1: what informed it,
+This document defends the construction of `tech.ocula.shopping.intents`: what informed it,
 why the dimensions are what they are, why we rejected the alternatives we considered, the
 orthogonality claim, and what we deliberately deferred. The vocabulary itself is in
 [`../shopping_intents.json`](../shopping_intents.json); per-value definitions are in
@@ -15,7 +15,7 @@ The taxonomy is grounded in catalogue exposure from Ocula's enrichment work acro
 retailers. Across that work, shoppers' decision-shaping context falls into a small number of
 recurring axes: why they're buying, where they are in the funnel, what their relationship with
 the category is, and what situation the product will serve. These four axes are the dimensions
-of the v0.1 taxonomy.
+of the taxonomy.
 
 The vocabulary itself is drafted from these observations and is subject to review against the
 underlying catalogues for coverage, naming consistency, and orthogonality between dimensions
@@ -29,14 +29,14 @@ framework.
 ## Scope of this document
 
 The four dimensions and their values are drawn from Ocula's catalogue work. The remaining
-sections of this document — rejected alternatives, known tensions, and deferred-to-v0.2
+sections of this document — rejected alternatives, known tensions, and deferred
 candidates — are design-time reasoning at draft stage, intended to give reviewers something
 concrete to push back against. They are not a record of historical deliberation. Reviewers
 should amend or replace any item that does not reflect Ocula's actual position.
 
 ## Why these four dimensions
 
-The v0.1 taxonomy uses four dimensions because four questions repeatedly explain a shopper's
+The taxonomy uses four dimensions because four questions repeatedly explain a shopper's
 context:
 
 | Dimension | Question it answers |
@@ -52,7 +52,7 @@ sufficient on its own.
 
 ### Rejected alternatives
 
-Each of the following was considered and rejected for v0.1.
+Each of the following was considered and rejected for the initial draft.
 
 **Price tier** (`luxury`, `mid_range`, `budget`). Rejected because it describes the product, not
 the shopper's context. UCP already carries price information directly; intent should be
@@ -82,9 +82,9 @@ four chosen dimensions.
 budget, so the tag over-applies; and the more useful signal — the actual budget range — is
 either inferrable from price-filter behaviour or out of scope for a public extension.
 
-**Brand loyalty** (`brand_loyal`, `brand_open`). Rejected for v0.1: implementations vary widely
+**Brand loyalty** (`brand_loyal`, `brand_open`). Rejected for now: implementations vary widely
 in how brand affinity is modelled, and there isn't enough cross-implementation signal to
-standardise a vocabulary yet. Revisit when more partners are using the v0.1 taxonomy.
+standardise a vocabulary yet. Revisit when more partners are using the taxonomy.
 
 **Single-dimension flat list** (e.g. `gift_research_beginner_travel` as one token). Rejected:
 flat compound tokens defeat compositionality. The whole value of the taxonomy comes from being
@@ -95,7 +95,7 @@ intersect tags across products to surface matches.
 the common case (everyday use) is already captured by `situational_fit:daily_use`, and the
 remaining frequency points are either rare enough to defer (`constant` for industrial use cases)
 or fold cleanly into other dimensions (`rare` ≈ `special_occasion` or `seasonal`). A full
-frequency dimension is a candidate for v0.2 if patterns recur.
+frequency dimension is a candidate for a future version if patterns recur.
 
 ## Orthogonality argument
 
@@ -135,12 +135,12 @@ tradeoff is acceptable:
    `situational_fit` is about location/setting. Daily-use can co-occur with `home_use` or
    `professional_setting` (the dimension allows multiple values), so the issue is one of
    semantic uniformity within the dimension rather than orthogonality across dimensions. The
-   alternative — promoting frequency to its own dimension — has been deferred to v0.2 because
+   alternative — promoting frequency to its own dimension — has been deferred because
    `daily_use` covers the dominant case and the cost of a fifth dimension didn't justify the
    precision gain.
 
-These tensions are documented rather than resolved. v0.2 should revisit them with feedback from
-real client data.
+These tensions are documented rather than resolved. A future version should revisit them with
+feedback from real client data.
 
 ## Versioning policy
 
@@ -150,7 +150,7 @@ than rejecting them as invalid. This is what makes additive growth possible.
 The vocabulary grows **additively**:
 
 - New values MAY be added at any version bump and require no consumer changes.
-- New dimensions MAY be added at minor version bumps; consumers that ignore unknown dimensions
+- New dimensions MAY be added in a later version; consumers that ignore unknown dimensions
   continue to function.
 - Existing values MUST NOT be renamed or removed. If a value was a mistake, mark it deprecated
   in the human-readable spec and discourage its use; do not delete it.
@@ -161,13 +161,13 @@ The `version` field in `shopping_intents.json` is the date the version was publi
 SHOULD check the version they have ingested against the published one periodically; new values
 will only be visible after a refresh.
 
-## Deferred to v0.2
+## Deferred candidates
 
-The following candidates were considered for v0.1 and explicitly deferred.
+The following candidates were considered for the initial draft and explicitly deferred.
 
 - **`subscription_intent`** (one-time vs. subscription). Deferred because the wire format would
   interact with `decision_phase:ready_to_buy` in ways we want to see real client signal on
-  before standardising. Likely v0.2 if subscription commerce continues to grow inside UCP.
+  before standardising. A likely future addition if subscription commerce continues to grow inside UCP.
 
 - **`accessibility_needs`**. Deferred because the right modelling is genuinely unclear: shopper-
   asserted preference vs. requirement, opt-in vs. inferred, granularity (motor / visual /
@@ -193,5 +193,5 @@ The following candidates were considered for v0.1 and explicitly deferred.
   `acquaintance`). Deferred because the privacy implications are real and the lift in
   recommendation quality from this signal is unclear.
 
-When v0.2 is drafted, each of these gets revisited with whatever client validation data v0.1
-produces.
+When a future version is drafted, each of these gets revisited with whatever client validation
+data the initial release produces.

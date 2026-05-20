@@ -1,11 +1,11 @@
 # ocula-ucp-extension
 
 Ocula's open vendor extensions to the [Universal Commerce Protocol (UCP)](https://ucp.dev).
-v0.1 scope: `tech.ocula.shopping.descriptors` — the descriptive layer for agentic commerce.
+Initial scope: `tech.ocula.shopping.descriptors` — the descriptive layer for agentic commerce.
 
-> **Status:** `v0.1-draft — pre-release.` RFC not yet submitted to the UCP working group.
+> **Status:** `draft — pre-release.` RFC not yet submitted to the UCP working group.
 > Schemas, taxonomy, and validator are under active development; shapes may change before the
-> v0.1 launch.
+> first public release.
 
 ## What this is
 
@@ -26,7 +26,7 @@ the UCP [Schema Authoring Guide](https://ucp.dev/documentation/schema-authoring/
   whether fields are present, well-formed, and use documented vocabulary terms. Content quality
   assessment (whether a highlight is well-written, whether a use case is coherent) is a separate
   methodology, offered as part of Ocula's commercial enrichment services.
-- **Not finished.** This repository tracks the v0.1 draft as it lands.
+- **Not finished.** This repository tracks the draft as it lands.
 
 ## Repository layout
 
@@ -49,5 +49,5 @@ Apache 2.0 — see [`LICENSE`](./LICENSE).
 
 ## Contributing
 
-The repository is private during v0.1 development. Contribution guidelines will be published
-alongside the v0.1 launch.
+The repository is private during initial development. Contribution guidelines will be published
+alongside the first public release.
