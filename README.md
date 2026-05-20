@@ -21,7 +21,8 @@ the UCP [Schema Authoring Guide](https://ucp.dev/documentation/schema-authoring/
 ## What this is not
 
 - **Not a competing standard.** It's a UCP-conformant vendor extension, designed for promotion
-  into the `dev.ucp.*` namespace if it gains adoption.
+  into the `dev.ucp.*` namespace if it gains adoption — following the precedent of
+  [Affirm's payment extension RFC (#384)](https://github.com/Universal-Commerce-Protocol/ucp/issues/384).
 - **Not a content-quality methodology.** The validator checks structural conformance only —
   whether fields are present, well-formed, and use documented vocabulary terms. Content quality
   assessment (whether a highlight is well-written, whether a use case is coherent) is a separate

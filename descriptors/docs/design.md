@@ -85,6 +85,18 @@ extension is additive (a new `descriptors` field nested in each variant);
 revisit in a future version if real client data shows the product-level
 surface is too coarse.
 
+### Category-specific extensions
+
+The initial descriptors are category-agnostic. Category packs would add
+structured fields where a category's buying decision needs them:
+
+- **Apparel** — fit, fabric, care, sizing systems.
+- **Electronics** — compatibility, specifications, port/standard support.
+- **Beauty** — ingredients, skin/hair-type fit, claims substantiation.
+
+Each would ship as its own additive layer, composing the same way the base
+extension does — no breaking change to existing consumers.
+
 ## Why a descriptive layer at all
 
 *TODO — filled in by the launch-docs ticket.*
