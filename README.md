@@ -102,19 +102,6 @@ These are decisions the schema makes on purpose. Each is documented in
   Scoring whether content is well-written, coherent, or accurate is a separate deliverable.
 - **Not finished.** This repository tracks the draft as it lands.
 
-## Roadmap
-
-After 2026-05-18, the directions worth signalling:
-
-- **Category-specific extensions.** Vertical extensions for apparel (fit signals, occasion,
-  season), electronics (compatibility, performance specs, certifications), beauty (skin type,
-  ingredient flags, claims), and similar — each deepening coverage without bloating the core.
-- **A quality-scoring methodology.** A companion methodology for measuring whether descriptive
-  content is well-written, coherent, and accurate — sitting on top of the structural spec.
-- **Promotion to the UCP core namespace.** If the extension gains traction across multiple
-  retailers, propose graduation from `tech.ocula.*` into `dev.ucp.*` via the documented
-  Tech Council route.
-
 ## Repository layout
 
 | Path | Purpose |
