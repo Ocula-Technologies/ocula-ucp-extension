@@ -1,11 +1,8 @@
 # Descriptors — design rationale
 
-> **DRAFT — partial document.** This captures the design choices the schemas in
+> **DRAFT.** This captures the design choices the schemas in
 > `descriptors/schemas/2026-05-18/` are predicated on — identity, composition,
 > authoring conventions, field shapes, and structural required/optional rules.
-> Two positioning sections at the end (*Why a descriptive layer at all*,
-> *Why a vendor extension rather than a metadata blob*) remain stubs and are
-> tracked under a future launch-docs ticket.
 
 ## Identity and versioning
 
@@ -271,11 +268,3 @@ using documented vocabulary terms — is intentionally separate from content
 quality (is a highlight well-written, is a use case coherent, are intent tags
 accurately applied). A companion quality-scoring methodology is out of scope
 for the schema itself.
-
-## Why a descriptive layer at all
-
-*TODO — filled in by the launch-docs ticket.*
-
-## Why a vendor extension rather than a metadata blob
-
-*TODO — filled in by the launch-docs ticket.*
