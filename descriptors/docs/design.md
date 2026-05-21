@@ -233,38 +233,3 @@ UCP's `amount.json` requires integer minor units (cents, not decimal
 strings). Any monetary value in a canonical example or fixture must be an
 integer minor-unit value and validate against `amount.json`. Decimal strings
 like `"10.00"` will fail validation.
-
-## Future scope
-
-The items below are deliberately out of the initial scope. They are deferred
-to later versions or live in separate artefacts so the initial surface stays
-small enough to ship and validate.
-
-### Variant-level descriptors
-
-UCP's product schema permits each variant to carry its own description. The
-initial schema attaches descriptors only at the product level, on the
-assumption that most enrichment use cases are model-level. Variant-level
-extension is additive (a new `descriptors` field nested in each variant);
-revisit in a future version if real client data shows the product-level
-surface is too coarse.
-
-### Category-specific extensions
-
-The initial descriptors are category-agnostic. Category packs would add
-structured fields where a category's buying decision needs them:
-
-- **Apparel** — fit, fabric, care, sizing systems.
-- **Electronics** — compatibility, specifications, port/standard support.
-- **Beauty** — ingredients, skin/hair-type fit, claims substantiation.
-
-Each would ship as its own additive layer, composing the same way the base
-extension does — no breaking change to existing consumers.
-
-### Quality-scoring methodology
-
-The structural conformance the schema enforces — fields present, well-formed,
-using documented vocabulary terms — is intentionally separate from content
-quality (is a highlight well-written, is a use case coherent, are intent tags
-accurately applied). A companion quality-scoring methodology is out of scope
-for the schema itself.
